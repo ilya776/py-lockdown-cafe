@@ -1,19 +1,32 @@
 class VaccineError(Exception):
+    """Base class for all vaccine-related errors."""
     pass
 
 
 class NotVaccinatedError(VaccineError):
-    def __init__(self) -> None:
-        super().__init__("Visitor is not vaccinated."
-                         " A vaccine key is required.")
+    """Exception raised when a visitor is not vaccinated."""
+
+    def __init__(self, message: str = "Visitor is not vaccinated."
+                                      " A vaccine key is required.") -> None:
+
+        self.message = message
+        super().__init__(self.message)
 
 
 class OutdatedVaccineError(VaccineError):
-    def __init__(self) -> None:
-        super().__init__("Visitor's vaccine is outdated."
-                         " A valid vaccine is required.")
+    """Exception raised when a visitor's vaccine is outdated."""
+
+    def __init__(self, message: str = "The visitor's vaccine has expired.")\
+            -> None:
+        self.message = message
+        super().__init__(self.message)
 
 
 class NotWearingMaskError(Exception):
-    def __init__(self) -> None:
-        super().__init__("Visitor is not wearing a mask. A mask is required.")
+    """Exception raised when a visitor is not wearing a mask."""
+
+    def __init__(self, message: str = "Visitor is not wearing a mask.")\
+            -> None:
+
+        self.message = message
+        super().__init__(self.message)
